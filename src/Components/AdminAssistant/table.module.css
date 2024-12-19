@@ -1,0 +1,105 @@
+.container {
+  width: calc(100% - 200px);
+  margin: 100px auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.container table {
+  width: 100%;
+  text-align: center;
+}
+.container table thead {
+  background-color: #2b2b2b;
+  color: #fff;
+}
+.container table tr th,
+.container table tr td {
+  padding: 20px;
+}
+.container table tbody tr:nth-child(even) {
+  background-color: lightgray;
+}
+.container table tbody tr td img {
+  width: 90px;
+  height: 90px;
+  object-fit: cover;
+  cursor: pointer;
+}
+.container table tbody tr .actions {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  gap: 5px;
+  flex-wrap: wrap;
+}
+
+.container table tbody tr .actions button,
+.container table tbody tr .actions a {
+  padding: 7px 25px;
+  border: none;
+  color: #fff;
+  background-color: darkred;
+  border-radius: 5px;
+  box-shadow: 0 0 15px 2px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  transition: 0.25s;
+}
+
+.container table tbody tr .actions button:nth-child(2) {
+  background-color: green;
+}
+.container table tbody tr .actions a {
+  background-color: #2b2b2b;
+}
+
+.container table tbody tr .actions button:hover,
+.container table tbody tr .actions a:hover {
+  opacity: 0.7;
+}
+
+.success {
+  width: 100%;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1111;
+}
+.success .message {
+  width: 500px;
+  height: 200px;
+  padding: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  background-color: #fff;
+  box-shadow: 0 0 20px 3px rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+}
+.success .message button {
+  padding: 10px 50px;
+  background-color: darkred;
+  color: #fff;
+  border: none;
+  box-shadow: 0 0 10px 2px rgba(0, 0, 0, 0.1);
+  font-size: 17px;
+  align-self: flex-end;
+  margin-top: 20px;
+  border-radius: 5px;
+  transition: 0.5s;
+  cursor: pointer;
+}
+.success .message button:hover {
+  opacity: 0.5;
+}
+
+.success .message button {
+  align-self: center;
+}
