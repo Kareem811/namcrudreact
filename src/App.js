@@ -1,37 +1,3 @@
-// import React from "react";
-// import "./App.css";
-// import { Routes, Route, Router } from "react-router-dom";
-// import Login from './Components/Log/Login'
-// import Register from './Components/Log/Register'
-// import ProtectedRoute from "./Components/Protected/ProtectedRoutes";
-// import Dashboard from "./Components/Dashboard/Dashboard";
-// function App() {
-//   return (
-//     <div className="App">
-//       {/* <Routes>
-//         <Route path={"/login"} element={<Login />} />
-//         <Route path={"/register"} element={<Register />} />
-//       </Routes> */}
-//       {/* <Router> */}
-//         <Routes>
-//           <Route path="/login" element={<Login />} />
-//           <Route path="/register" element={<Register />} />
-//           <Route
-//             path="/dashboard"
-//             element={
-//               <ProtectedRoute>
-//                 <Dashboard />
-//               </ProtectedRoute>
-//             }
-//           />
-//         </Routes>
-//       {/* </Router> */}
-//     </div>
-//   );
-// }
-
-// export default App;
-// App.js
 import React from "react";
 import { Routes, Route } from "react-router-dom";
 import Login from "./Components/Log/Login";
@@ -44,6 +10,10 @@ import ShowProducts from "./Components/AdminAssistant/ShowProducts";
 import SingleProduct from "./Components/AdminAssistant/SingleProduct";
 import UpdateForm from "./Components/AdminAssistant/UpdateForm";
 import ShowUsers from "./Components/AdminAssistant/ShowUsers";
+import ProductsComponent from "./Components/Products/ProductsComponent";
+import UserSingleProduct from "./Components/Products/UserSingleProduct";
+import AboutComponent from "./Components/About/AboutComponent";
+import ShowMessages from "./Components/AdminAssistant/ShowMessages";
 
 function App() {
   return (
@@ -99,6 +69,14 @@ function App() {
             </ProtectedRoute>
           }
         />
+        <Route
+          path="/admin/dashboard/showmessages"
+          element={
+            <ProtectedRoute allowedRoles={["admin"]}>
+              <ShowMessages />
+            </ProtectedRoute>
+          }
+        />
         {/* ------------------------------------ */}
         <Route
           path="/assistant/dashboard"
@@ -150,10 +128,50 @@ function App() {
         />
 
         <Route
+          path="/assistant/dashboard/showmessages"
+          element={
+            <ProtectedRoute allowedRoles={["assistant"]}>
+              <ShowMessages />
+            </ProtectedRoute>
+          }
+        />
+        <Route
           path="/"
           element={
             <ProtectedRoute allowedRoles={["user"]}>
               <HomeCompnent />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/home"
+          element={
+            <ProtectedRoute allowedRoles={["user"]}>
+              <HomeCompnent />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/about"
+          element={
+            <ProtectedRoute allowedRoles={["user"]}>
+              <AboutComponent />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/products"
+          element={
+            <ProtectedRoute allowedRoles={["user"]}>
+              <ProductsComponent />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/products/:id"
+          element={
+            <ProtectedRoute allowedRoles={["user"]}>
+              <UserSingleProduct />
             </ProtectedRoute>
           }
         />

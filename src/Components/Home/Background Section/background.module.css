@@ -18,14 +18,14 @@
   position: absolute;
   top: 0;
   left: 0;
-  background-color: rgba(0, 0, 0, 0.7);
+  background: linear-gradient(to right, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.3));
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
   flex-direction: column;
 }
 .container .darkLayer .backgroundData {
-  padding: 100px;
+  padding: 50px;
   border-radius: 10px;
   display: flex;
   flex-direction: column;
@@ -43,7 +43,7 @@
 }
 .container .darkLayer .backgroundData a {
   color: #fff;
-  background-color: rgba(139, 0, 0, 0.845);
+  background-color: #bc9a6d;
   padding: 13px 57px;
   border-radius: 5px;
   font-size: 19px;
@@ -51,7 +51,7 @@
 }
 .container .darkLayer .backgroundData a:hover {
   background-color: #fff;
-  color: darkred;
+  color: #bc9a6d;
 }
 @media screen and (max-width: 601px) {
   .container .backgroundData {

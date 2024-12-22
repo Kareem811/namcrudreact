@@ -62,7 +62,7 @@ const AddProduct = () => {
         )}
         <div className={logStyles.content}>
           <div className={logStyles.data}>
-            <MdProductionQuantityLimits size={200} color="darkred" />
+            <MdProductionQuantityLimits size={200} color="#1f3835" />
           </div>
           <div className={logStyles.data}>
             <form onSubmit={(e) => handleSubmit(e)} encType="multipart/form-data">

@@ -1,22 +1,33 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Navbar from "../Navbar/Navbar";
 import logStyles from "../Assets/form.module.css";
 import dashboardStyles from "./dashboard.module.css";
 import axiosClient from "../../axiosClient";
 import { MdProductionQuantityLimits } from "react-icons/md";
-import { useNavigate } from "react-router-dom";
 import { IoIosCloseCircleOutline } from "react-icons/io";
 
 const UpdateForm = ({ formProduct, closeForm }) => {
-  console.log(formProduct);
   const [product, setProduct] = useState({
     pname: "",
     pprice: "",
     pcategory: "",
     pdescription: "",
+    pimgs: [],
   });
   const [err, setErr] = useState(false);
   const [done, setDone] = useState(false);
+
+  useEffect(() => {
+    if (formProduct) {
+      setProduct({
+        pname: formProduct.pname || "",
+        pprice: formProduct.pprice || "",
+        pcategory: formProduct.pcategory || "",
+        pdescription: formProduct.pdescription || "",
+        pimgs: formProduct.pimgs || [],
+      });
+    }
+  }, [formProduct]);
 
   const handleFileChange = (files) => {
     setProduct({ ...product, pimgs: files });
@@ -50,6 +61,7 @@ const UpdateForm = ({ formProduct, closeForm }) => {
       setErr(true);
     }
   };
+
   return (
     <>
       <Navbar />
@@ -70,11 +82,16 @@ const UpdateForm = ({ formProduct, closeForm }) => {
           )}
           <div className={`${logStyles.content} ${dashboardStyles.updateForm}`}>
             <div className={logStyles.data}>
-              <MdProductionQuantityLimits size={200} color="darkred" />
+              <MdProductionQuantityLimits size={200} color="#1f3835" />
             </div>
             <div className={logStyles.data}>
-              <form onSubmit={(e) => handleSubmit(e)} encType="multipart/form-data">
-                <IoIosCloseCircleOutline size={30} cursor={"pointer"} color="darkred" />
+              <form onSubmit={handleSubmit} encType="multipart/form-data">
+                <IoIosCloseCircleOutline
+                  size={30}
+                  cursor={"pointer"}
+                  color="#1f3835"
+                  onClick={closeForm} // Close function applied here
+                />
                 <h1>Update {formProduct.pname}</h1>
                 <div className={logStyles.inputData}>
                   <label htmlFor="pname">Product Name</label>

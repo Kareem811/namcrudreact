@@ -37,13 +37,27 @@ header nav ul li a {
   gap: 5px;
   font-size: 17px;
   transition: 0.5s;
-  color: darkred;
+  color: #bc9a6d;
+  position: relative;
 }
-
+header nav ul li a::before,
+header nav ul li .active::before {
+  content: "";
+  width: 0;
+  height: 3px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  background-color: #bc9a6d;
+  transition: 0.5s;
+}
 header nav ul li a:hover,
 header nav ul li .active {
-  background-color: darkred;
   color: #fff;
+}
+header nav ul li a:hover::before,
+header nav ul li .active::before {
+  width: 100%;
 }
 header nav .bigMenu {
   width: 80%;
@@ -51,14 +65,14 @@ header nav .bigMenu {
   overflow: hidden;
   padding: 30px;
   background-color: #fff;
-  color: darkred;
+  color: #bc9a6d;
   display: flex !important;
   justify-content: center;
   align-items: center;
   flex-direction: column;
   gap: 20px;
   position: fixed;
-  top: 110px;
+  top: 85px;
   margin: auto;
   z-index: 9999;
   transition: 0.5s;
@@ -72,10 +86,21 @@ header nav .bigMenu {
 }
 header nav ul li button {
   padding: 7px 19px;
-  background-color: darkred;
+  background-color: #bc9a6d;
   margin-left: 50px;
   color: #fff;
   border: none;
   cursor: pointer;
+  font-size: 16px;
   border-radius: 5px;
+}
+header nav a img {
+  width: 250px;
+  height: 100%;
+  object-fit: contain;
+}
+@media screen and (max-width: 450px) {
+  header nav a img {
+    width: 150px;
+  }
 }

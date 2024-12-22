@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { IoIosAddCircleOutline } from "react-icons/io";
 import { Link } from "react-router-dom";
-import { FaMagnifyingGlass } from "react-icons/fa6";
+import { FaMagnifyingGlass, FaMessage } from "react-icons/fa6";
 import { FaEdit } from "react-icons/fa";
 
 import dashboardStyles from "./dashboard.module.css";
@@ -21,6 +21,11 @@ const Actions = () => {
       name: "Show Users",
       path: "showusers",
       icon: <FaEdit size={40} />,
+    },
+    {
+      name: "Show Messages",
+      path: "showmessages",
+      icon: <FaMessage size={40} />,
     },
   ]);
   return (

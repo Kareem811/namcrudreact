@@ -1,0 +1,78 @@
+.container {
+  margin: 120px auto 50px auto;
+  width: calc(100% - 100px);
+  min-height: auto;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
+  gap: 40px;
+}
+.container h1:nth-child(1) {
+  font-size: 50px;
+  color: #1f3835;
+  font-weight: 900;
+}
+.container .content {
+  width: 100%;
+  min-height: 400px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+.container .content .aboutImage {
+  width: 950px;
+  height: 500px;
+  overflow: hidden;
+  border-radius: 5px;
+  box-shadow: 0 0 20px 2px rgba(0, 0, 0, 0.3);
+}
+.container .content .aboutImage img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: 0.5s;
+}
+
+.container .content .aboutImage img:hover {
+  transform: scale(1.3);
+}
+.container .content .aboutData {
+  width: 600px;
+  height: auto;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-direction: column;
+  gap: 20px;
+  padding: 15px;
+}
+.container .content .aboutData h2 {
+  font-size: 35px;
+  position: relative;
+  color: #1f3835;
+}
+
+.container .content .aboutData h2::before {
+  content: "";
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 50%;
+  height: 1.5px;
+  background-color: #1f3835;
+}
+.container .content .aboutData p {
+  color: gray;
+  line-height: 35px;
+  font-size: 15px;
+}
+@media screen and (max-width: 1000px) {
+  .container .content {
+    flex-wrap: wrap;
+  }
+  .container .content .aboutData {
+    width: 100%;
+  }
+}
