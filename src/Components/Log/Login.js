@@ -175,6 +175,9 @@ const Login = () => {
               </div>
               <button style={{ alignSelf: "flex-start" }}>Login</button>
               {error && <p style={{ color: "red", marginTop: "10px" }}>{error}</p>}
+              <Link style={{ alignSelf: "flex-start" }} to={"/forget-password"}>
+                Forget Password
+              </Link>
               <Link style={{ alignSelf: "flex-start" }} to={"/register"}>
                 Register Now
               </Link>

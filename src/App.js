@@ -14,6 +14,7 @@ import ProductsComponent from "./Components/Products/ProductsComponent";
 import UserSingleProduct from "./Components/Products/UserSingleProduct";
 import AboutComponent from "./Components/About/AboutComponent";
 import ShowMessages from "./Components/AdminAssistant/ShowMessages";
+import ForgetPassword from "./Components/Log/ForgetPassword";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
       <Routes>
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/forget-password" element={<ForgetPassword />} />
         <Route
           path="/admin/dashboard"
           element={
