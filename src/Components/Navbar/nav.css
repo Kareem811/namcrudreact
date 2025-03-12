@@ -51,13 +51,16 @@ header nav ul li .active::before {
   background-color: #bc9a6d;
   transition: 0.5s;
 }
-header nav ul li a:hover,
-header nav ul li .active {
-  color: #fff;
-}
 header nav ul li a:hover::before,
 header nav ul li .active::before {
   width: 100%;
+}
+header nav ul li .active {
+  color: #bc9a6d;
+}
+header nav ul li .active::before {
+  background-color: #bc9a6d !important;
+  height: 3px;
 }
 header nav .bigMenu {
   width: 80%;
