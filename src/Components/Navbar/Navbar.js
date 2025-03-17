@@ -481,9 +481,9 @@ const Navbar = () => {
                 <li>
                   <NavLink to="/products">Products</NavLink>
                 </li>
-                <li>
+                {/* <li>
                   <NavLink to="/contact">Contact</NavLink>
-                </li>
+                </li> */}
               </>
             ) : (
               <>
@@ -516,9 +516,9 @@ const Navbar = () => {
               <li>
                 <NavLink to="/products">Products</NavLink>
               </li>
-              <li>
+              {/* <li>
                 <NavLink to="/contact">Contact</NavLink>
-              </li>
+              </li> */}
               <li>
                 <NavLink to="/login">
                   <IoLogInOutline size={23} /> {!words && "Login"}

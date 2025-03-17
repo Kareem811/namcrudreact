@@ -3,6 +3,8 @@ import productsStyles from "./products.module.css";
 import { useParams } from "react-router-dom";
 import axiosClient from "../../axiosClient";
 import Navbar from "../Navbar/Navbar";
+import Footer from "../Footer/Footer";
+
 const UserSingleProduct = () => {
   const [product, setProduct] = useState({});
   const [loading, setLoading] = useState(true);
@@ -12,14 +14,15 @@ const UserSingleProduct = () => {
     axiosClient(`/products/${id}`)
       .then((res) => {
         setProduct(res.data);
-        setImages(JSON.parse(product.pimgs));
+        setImages(JSON.parse(product.images));
         setLoading(false);
       })
       .catch((err) => {
         console.log(err);
         setLoading(false);
       });
-  });
+    console.log(images);
+  }, [id, images]);
   return (
     <>
       <Navbar />
@@ -28,24 +31,29 @@ const UserSingleProduct = () => {
           <p>Loading ... </p>
         ) : (
           <>
-            <h1>{product.pname}</h1>
+            <h1>{product.name}</h1>
             <div className={productsStyles.content}>
-              <img src={images[0]} alt="" />
+              <img src={`http://127.0.0.1:8000/storage/${images[0]}`} alt="" />
               <div className={productsStyles.productData}>
-                <h2>{product.pname}</h2>
-                <h4>{product.pcategory}</h4>
-                <span>OMR {product.pprice}</span>
-                <p>{product.pdescription}</p>
+                <h2>{product.name}</h2>
+                <h4>{product.category}</h4>
+                <span>OMR {product.price}</span>
+                <p>{product.description}</p>
               </div>
             </div>
             <div className={productsStyles.images}>
               {images.map((el, idx) => (
-                <img key={idx} src={el} alt="" />
+                <img
+                  key={idx}
+                  src={`http://127.0.0.1:8000/storage/${el}`}
+                  alt=""
+                />
               ))}
             </div>
           </>
         )}
       </section>
+      <Footer />
     </>
   );
 };
