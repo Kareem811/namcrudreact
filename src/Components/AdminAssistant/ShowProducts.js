@@ -43,17 +43,26 @@ const ShowProducts = () => {
     <>
       <Navbar />
       <div className={tableStyles.container}>
-        {update ? <UpdateForm formProduct={formProduct} closeForm={closeForm} /> : undefined}
+        {update ? (
+          <UpdateForm formProduct={formProduct} closeForm={closeForm} />
+        ) : undefined}
         {done && (
           <div
             onClick={() => {
               setDone(false);
               closeForm();
             }}
-            className={tableStyles.success}>
+            className={tableStyles.success}
+          >
             <div className={tableStyles.message}>
               <h1>Deleted Successfully</h1>
-              <button onClick={() => window.location.href = '/admin/dashboard/showproducts'}>Confirm</button>
+              <button
+                onClick={() =>
+                  (window.location.href = "/admin/dashboard/showproducts")
+                }
+              >
+                Confirm
+              </button>
             </div>
           </div>
         )}
@@ -76,13 +85,25 @@ const ShowProducts = () => {
               {products.map((el) => (
                 <tr key={el.id}>
                   <td>{el.id}</td>
-                  <td>{el.pname}</td>
-                  <td>{el.pprice}</td>
-                  <td>{el.pcategory}</td>
-                  <td>{el.pdescription}</td>
+                  <td>{el.name}</td>
+                  <td>{el.price}</td>
+                  <td>{el.category}</td>
+                  <td>{el.description}</td>
                   <td>
-                    <img src={JSON.parse(el.pimgs)} alt="" />
+                    {el.images && typeof el.images === "string" ? (
+                      <img
+                        src={`http://127.0.0.1:8000/storage/${
+                          JSON.parse(el.images)[0]
+                        }`}
+                        alt="Product Thumbnail"
+                        width="50"
+                        height="50"
+                      />
+                    ) : (
+                      <span>No Image</span>
+                    )}
                   </td>
+
                   <td className={tableStyles.actions}>
                     <button onClick={() => handleDelete(el.id)}>Delete</button>
                     <button onClick={() => getForm(el)}>Update</button>

@@ -8,11 +8,11 @@ import { IoIosCloseCircleOutline } from "react-icons/io";
 
 const UpdateForm = ({ formProduct, closeForm }) => {
   const [product, setProduct] = useState({
-    pname: "",
-    pprice: "",
-    pcategory: "",
-    pdescription: "",
-    pimgs: [],
+    name: "",
+    price: "",
+    category: "",
+    description: "",
+    images: [],
   });
   const [err, setErr] = useState(false);
   const [done, setDone] = useState(false);
@@ -20,38 +20,42 @@ const UpdateForm = ({ formProduct, closeForm }) => {
   useEffect(() => {
     if (formProduct) {
       setProduct({
-        pname: formProduct.pname || "",
-        pprice: formProduct.pprice || "",
-        pcategory: formProduct.pcategory || "",
-        pdescription: formProduct.pdescription || "",
-        pimgs: formProduct.pimgs || [],
+        name: formProduct.name || "",
+        price: formProduct.price || "",
+        category: formProduct.category || "",
+        description: formProduct.description || "",
+        images: formProduct.images || [],
       });
     }
   }, [formProduct]);
 
   const handleFileChange = (files) => {
-    setProduct({ ...product, pimgs: files });
+    setProduct({ ...product, images: files });
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     const formData = new FormData();
-    formData.append("pname", product.pname);
-    formData.append("pprice", product.pprice);
-    formData.append("pcategory", product.pcategory);
-    formData.append("pdescription", product.pdescription);
-    if (product.pimgs) {
-      Array.from(product.pimgs).forEach((file) => {
-        formData.append("pimgs[]", file);
+    formData.append("name", product.name);
+    formData.append("price", product.price);
+    formData.append("category", product.category);
+    formData.append("description", product.description);
+    if (product.images.length > 0 && product.images[0] instanceof File) {
+      Array.from(product.images).forEach((file) => {
+        formData.append("images[]", file);
       });
     }
 
     try {
-      const res = await axiosClient.post(`/products/${formProduct.id}`, formData, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      });
+      const res = await axiosClient.post(
+        `/products/${formProduct.id}`,
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
       console.log(res);
       if (res.data.message === "Product updated successfully") {
         setDone(true);
@@ -73,10 +77,17 @@ const UpdateForm = ({ formProduct, closeForm }) => {
                 setDone(false);
                 closeForm();
               }}
-              className={logStyles.success}>
+              className={logStyles.success}
+            >
               <div className={logStyles.message}>
                 <h1>Updated Successfully</h1>
-                <button onClick={() => (window.location.href = "/admin/dashboard/showproducts")}>Confirm</button>
+                <button
+                  onClick={() =>
+                    (window.location.href = "/admin/dashboard/showproducts")
+                  }
+                >
+                  Confirm
+                </button>
               </div>
             </div>
           )}
@@ -90,28 +101,61 @@ const UpdateForm = ({ formProduct, closeForm }) => {
                   size={30}
                   cursor={"pointer"}
                   color="#1f3835"
-                  onClick={closeForm} // Close function applied here
+                  onClick={closeForm}
                 />
-                <h1>Update {formProduct.pname}</h1>
+                <h1>Update {formProduct.name}</h1>
                 <div className={logStyles.inputData}>
-                  <label htmlFor="pname">Product Name</label>
-                  <input type="text" id="pname" value={product.pname} onChange={(e) => setProduct({ ...product, pname: e.target.value })} />
+                  <label htmlFor="name">Product Name</label>
+                  <input
+                    type="text"
+                    id="name"
+                    value={product.name}
+                    onChange={(e) =>
+                      setProduct({ ...product, name: e.target.value })
+                    }
+                  />
                 </div>
                 <div className={logStyles.inputData}>
-                  <label htmlFor="pprice">Product Price</label>
-                  <input type="text" id="pprice" value={product.pprice} onChange={(e) => setProduct({ ...product, pprice: e.target.value })} />
+                  <label htmlFor="price">Product Price</label>
+                  <input
+                    type="text"
+                    id="price"
+                    value={product.price}
+                    onChange={(e) =>
+                      setProduct({ ...product, price: e.target.value })
+                    }
+                  />
                 </div>
                 <div className={logStyles.inputData}>
-                  <label htmlFor="pcategory">Product Category</label>
-                  <input type="text" id="pcategory" value={product.pcategory} onChange={(e) => setProduct({ ...product, pcategory: e.target.value })} />
+                  <label htmlFor="category">Product Category</label>
+                  <input
+                    type="text"
+                    id="category"
+                    value={product.category}
+                    onChange={(e) =>
+                      setProduct({ ...product, category: e.target.value })
+                    }
+                  />
                 </div>
                 <div className={logStyles.inputData}>
-                  <label htmlFor="pdescription">Product Description</label>
-                  <input type="text" id="pdescription" value={product.pdescription} onChange={(e) => setProduct({ ...product, pdescription: e.target.value })} />
+                  <label htmlFor="description">Product Description</label>
+                  <input
+                    type="text"
+                    id="description"
+                    value={product.description}
+                    onChange={(e) =>
+                      setProduct({ ...product, description: e.target.value })
+                    }
+                  />
                 </div>
                 <div className={logStyles.inputData}>
                   <label htmlFor="image">Product Images</label>
-                  <input type="file" id="image" multiple onChange={(e) => handleFileChange(e.target.files)} />
+                  <input
+                    type="file"
+                    id="image"
+                    multiple
+                    onChange={(e) => handleFileChange(e.target.files)}
+                  />
                 </div>
                 <button type="submit">Update</button>
               </form>
