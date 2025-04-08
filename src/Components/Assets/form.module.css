@@ -52,7 +52,6 @@
   border-radius: 3px;
 }
 .container .content .data form input:focus,
-
 .container .content .data form textarea:focus {
   box-shadow: 0 0 20px 3px rgba(0, 0, 0, 0.3);
 }
@@ -146,4 +145,49 @@
 }
 .success .message button {
   align-self: center;
+}
+
+.replyContainer {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.7);
+  flex-direction: column;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 99;
+}
+.replyContainer form {
+  width: 600px;
+  padding: 30px 40px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 0 20px 3px rgba(0, 0, 0, 0.3);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 30px;
+}
+.replyContainer form textarea {
+  width: calc(100% - 20px);
+  height: 140px;
+  border-radius: 4px;
+  box-shadow: 0 0 20px 2px rgba(0, 0, 0, 0.2);
+  border: none;
+}
+.replyContainer form textarea::placeholder {
+  font-size: 17px;
+  padding: 10px;
+}
+.replyContainer form button {
+  padding: 10px 50px;
+  cursor: pointer;
+  color: #fff;
+  background-color: #1f3835;
+  border: none;
+  border-radius: 4px;
 }

@@ -503,6 +503,9 @@ const Navbar = () => {
                 <li>
                   <NavLink to="/admin/dashboard/showusers">Show Users</NavLink>
                 </li>
+                <li>
+                  <NavLink to="/admin/dashboard/showmessages">Show Messages</NavLink>
+                </li>
               </>
             )
           ) : (
@@ -534,7 +537,7 @@ const Navbar = () => {
           {auth.user && (
             <li>
               <span>
-                Welcome {!words && auth.user.username} ({auth.user.role})
+                {!words && auth.user.username} ({auth.user.role})
               </span>
             </li>
           )}
