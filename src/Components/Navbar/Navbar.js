@@ -459,16 +459,7 @@ const Navbar = () => {
         <Link to="/home">
           <img src={logo} alt="Logo" />
         </Link>
-        <ul
-          className={bigMenu ? "bigMenu" : ""}
-          style={
-            menu
-              ? bigMenu
-                ? { display: "block", width: `${navWidth}px` }
-                : { display: "none" }
-              : { display: "flex" }
-          }
-        >
+        <ul className={bigMenu ? "bigMenu" : ""} style={menu ? (bigMenu ? { display: "block", width: `${navWidth}px` } : { display: "none" }) : { display: "flex" }}>
           {auth.user ? (
             auth.role === "user" ? (
               <>
@@ -481,9 +472,12 @@ const Navbar = () => {
                 <li>
                   <NavLink to="/products">Products</NavLink>
                 </li>
-                {/* <li>
+                <li>
                   <NavLink to="/contact">Contact</NavLink>
-                </li> */}
+                </li>
+                <li>
+                  <NavLink to="/booking">Book Now</NavLink>
+                </li>
               </>
             ) : (
               <>
@@ -491,14 +485,10 @@ const Navbar = () => {
                   <NavLink to="/admin/dashboard">Dashboard</NavLink>
                 </li>
                 <li>
-                  <NavLink to="/admin/dashboard/addproduct">
-                    Add Products
-                  </NavLink>
+                  <NavLink to="/admin/dashboard/addproduct">Add Products</NavLink>
                 </li>
                 <li>
-                  <NavLink to="/admin/dashboard/showproducts">
-                    Show Products
-                  </NavLink>
+                  <NavLink to="/admin/dashboard/showproducts">Show Products</NavLink>
                 </li>
                 <li>
                   <NavLink to="/admin/dashboard/showusers">Show Users</NavLink>
@@ -519,9 +509,12 @@ const Navbar = () => {
               <li>
                 <NavLink to="/products">Products</NavLink>
               </li>
-              {/* <li>
+              <li>
                 <NavLink to="/contact">Contact</NavLink>
-              </li> */}
+              </li>
+              <li>
+                <NavLink to="/booking">Book Now</NavLink>
+              </li>
               <li>
                 <NavLink to="/login">
                   <IoLogInOutline size={23} /> {!words && "Login"}
@@ -535,28 +528,19 @@ const Navbar = () => {
             </>
           )}
           {auth.user && (
-            <li>
-              <span>
-                {!words && auth.user.username} ({auth.user.role})
-              </span>
-            </li>
-          )}
-          {auth.user && (
-            <li>
-              <button onClick={logout}>Logout</button>
-            </li>
+            <>
+              <li>
+                <NavLink to={`/profile/${auth.user.id}`}>
+                  {!words && auth.user.username} ({auth.user.role})
+                </NavLink>
+              </li>
+              <li>
+                <button onClick={logout}>Logout</button>
+              </li>
+            </>
           )}
         </ul>
-        {menu &&
-          (close ? (
-            <IoCloseCircleOutline
-              size={30}
-              className="menu-icon"
-              onClick={changeMenu}
-            />
-          ) : (
-            <IoMenu size={30} className="menu-icon" onClick={changeMenu} />
-          ))}
+        {menu && (close ? <IoCloseCircleOutline size={30} className="menu-icon" onClick={changeMenu} /> : <IoMenu size={30} className="menu-icon" onClick={changeMenu} />)}
       </nav>
     </header>
   );

@@ -15,6 +15,9 @@ import UserSingleProduct from "./Components/Products/UserSingleProduct";
 import AboutComponent from "./Components/About/AboutComponent";
 import ShowMessages from "./Components/AdminAssistant/ShowMessages";
 import ForgetPassword from "./Components/Log/ForgetPassword";
+import Profile from "./Components/Profile/Profile";
+import Contact from "./Components/Contact/Contact";
+import Booking from "./Components/Booking/Booking";
 
 function App() {
   return (
@@ -146,6 +149,22 @@ function App() {
           }
         />
         <Route
+          path="/contact"
+          element={
+            <ProtectedRoute allowedRoles={["user"]}>
+              <Contact />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/booking"
+          element={
+            <ProtectedRoute allowedRoles={["user"]}>
+              <Booking />
+            </ProtectedRoute>
+          }
+        />
+        <Route
           path="/home"
           element={
             <ProtectedRoute allowedRoles={["user"]}>
@@ -174,6 +193,14 @@ function App() {
           element={
             <ProtectedRoute allowedRoles={["user"]}>
               <UserSingleProduct />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/profile/:id"
+          element={
+            <ProtectedRoute allowedRoles={["user", "admin", "assistant"]}>
+              <Profile />
             </ProtectedRoute>
           }
         />

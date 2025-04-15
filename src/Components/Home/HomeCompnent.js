@@ -4,7 +4,7 @@ import BackgroundSection from "./Background Section/BackgroundSection";
 import AboutSection from "./About Section/AboutSection";
 import Footer from "../Footer/Footer";
 import Services from "./Services/Services";
-import Contact from "./Contact/Contact";
+import Contact from "../Contact/Contact";
 const HomeCompnent = () => {
   return (
     <>
@@ -12,7 +12,6 @@ const HomeCompnent = () => {
       <BackgroundSection />
       <AboutSection />
       <Services />
-      <Contact />
       <Footer />
     </>
   );
