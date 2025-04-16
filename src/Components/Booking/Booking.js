@@ -7,9 +7,14 @@ import Footer from "../Footer/Footer";
 const Booking = () => {
   const [formData, setFormData] = useState({
     username: "",
-    email: "",
-    message: "",
+    number: "",
+    department: "",
+    service: "",
+    type: "online",
+    date: "",
+    time: "",
   });
+
   const [done, setDone] = useState(false);
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -19,13 +24,17 @@ const Booking = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     axiosClient
-      .post("/send", formData)
+      .post("/booking", formData)
       .then((res) => {
         if (res.data === "Success") {
           setFormData({
-            username: ``,
-            email: ``,
-            message: ``,
+            username: "",
+            number: "",
+            department: "",
+            service: "",
+            type: "online",
+            date: "",
+            time: "",
           });
           setDone(true);
         }
@@ -64,31 +73,34 @@ const Booking = () => {
               <label htmlFor="department" className={bookingStyles.label}>
                 Department
               </label>
-              <input id="department" name="department" value={formData.department} onChange={handleChange} className={bookingStyles.input} required></input>
+              <input type="text" id="department" name="department" value={formData.department} onChange={handleChange} className={bookingStyles.input} required />
             </div>
             <div className={bookingStyles.formGroup}>
               <label htmlFor="service" className={bookingStyles.label}>
                 Service
               </label>
-              <input id="service" name="service" value={formData.service} onChange={handleChange} className={bookingStyles.input} required></input>
+              <input type="text" id="service" name="service" value={formData.service} onChange={handleChange} className={bookingStyles.input} required />
             </div>
             <div className={bookingStyles.formGroup}>
               <label htmlFor="type" className={bookingStyles.label}>
                 Type
               </label>
-              <input id="type" name="type" value={formData.type} onChange={handleChange} className={bookingStyles.input} required></input>
+              <select name="type" value={formData.type} onChange={handleChange} className={bookingStyles.input}>
+                <option value="online">Online</option>
+                <option value="offline">Offline</option>
+              </select>
             </div>
             <div className={bookingStyles.formGroup}>
               <label htmlFor="date" className={bookingStyles.label}>
                 Date
               </label>
-              <input id="date" name="date" value={formData.date} onChange={handleChange} className={bookingStyles.input} required></input>
+              <input type="date" id="date" name="date" value={formData.date} onChange={handleChange} className={bookingStyles.input} required />
             </div>
             <div className={bookingStyles.formGroup}>
               <label htmlFor="time" className={bookingStyles.label}>
                 Time
               </label>
-              <input id="time" name="time" value={formData.time} onChange={handleChange} className={bookingStyles.input} required></input>
+              <input type="time" id="time" name="time" value={formData.time} onChange={handleChange} className={bookingStyles.input} required />
             </div>
             <button type="submit" className={bookingStyles.button}>
               Submit

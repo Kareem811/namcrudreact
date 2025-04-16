@@ -1,10 +1,12 @@
-import React, { useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import contactStyles from "./contact.module.css";
 import axiosClient from "../../axiosClient";
 import Navbar from "../Navbar/Navbar";
 import Footer from "../Footer/Footer";
+import { AuthContext } from "../../Context/AuthContext";
 
 const Contact = () => {
+  const { auth } = useContext(AuthContext);
   const [formData, setFormData] = useState({
     username: "",
     email: "",
@@ -15,6 +17,15 @@ const Contact = () => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
+  useEffect(() => {
+    if (auth.user?.email) {
+      setFormData((prev) => ({
+        ...prev,
+        email: auth.user.email,
+        username: auth.user.username,
+      }));
+    }
+  }, [auth.user]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -52,13 +63,13 @@ const Contact = () => {
               <label htmlFor="username" className={contactStyles.label}>
                 Username
               </label>
-              <input type="text" id="username" name="username" value={formData.username} onChange={handleChange} className={contactStyles.input} required />
+              <input type="text" id="username" name="username" value={formData.username} onChange={handleChange} className={contactStyles.input} required disabled={auth.user?.username} />
             </div>
             <div className={contactStyles.formGroup}>
               <label htmlFor="email" className={contactStyles.label}>
                 Email
               </label>
-              <input type="email" id="email" name="email" value={formData.email} onChange={handleChange} className={contactStyles.input} required />
+              <input type="email" id="email" name="email" value={formData.email} onChange={handleChange} className={contactStyles.input} required disabled={auth.user?.email} />
             </div>
             <div className={contactStyles.formGroup}>
               <label htmlFor="message" className={contactStyles.label}>
