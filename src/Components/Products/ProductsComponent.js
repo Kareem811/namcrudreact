@@ -76,7 +76,7 @@ import React, { useEffect, useState } from "react";
 import productsStyles from "./products.module.css";
 import axiosClient from "../../axiosClient";
 import Navbar from "../Navbar/Navbar";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Footer from "../Footer/Footer";
 import { IoIosSearch } from "react-icons/io";
 
@@ -110,7 +110,7 @@ const ProductsComponent = () => {
     setSearch(value);
     fetchProducts(value);
   };
-
+  const navigate = useNavigate();
   return (
     <>
       <Navbar />
@@ -137,7 +137,10 @@ const ProductsComponent = () => {
                     <h3>{el.category}</h3>
                     <p>{el.description}</p>
                     <span>OMR {el.price}</span>
-                    <Link to={`${el.id}`}>Read More</Link>
+                    <div className={productsStyles.actions}>
+                      <Link to={`${el.id}`}>Read More</Link>
+                      <button onClick={() => navigate("/booking")}>Book Now</button>
+                    </div>
                   </div>
                 ))
               ) : (

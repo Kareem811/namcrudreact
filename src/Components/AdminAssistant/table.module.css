@@ -103,3 +103,15 @@
 .success .message button {
   align-self: center;
 }
+.container table tbody tr td button {
+  padding: 5px 20px;
+  cursor: pointer;
+  border: none;
+  color: #fff;
+  background-color: green;
+  border-radius: 5px;
+  transition: 0.5s;
+}
+.container table tbody tr td button:hover {
+  opacity: 0.7;
+}

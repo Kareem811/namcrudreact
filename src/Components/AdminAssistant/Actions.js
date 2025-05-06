@@ -1,11 +1,13 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { IoIosAddCircleOutline } from "react-icons/io";
 import { Link } from "react-router-dom";
 import { FaMagnifyingGlass, FaMessage } from "react-icons/fa6";
 import { FaEdit } from "react-icons/fa";
 
 import dashboardStyles from "./dashboard.module.css";
+import { AuthContext } from "../../Context/AuthContext";
 const Actions = () => {
+  const { auth } = useContext(AuthContext);
   const [actions] = useState([
     {
       name: "Add Product",
@@ -13,7 +15,7 @@ const Actions = () => {
       icon: <IoIosAddCircleOutline size={40} />,
     },
     {
-      name: "Show Product",
+      name: "Show Products",
       path: "showproducts",
       icon: <FaMagnifyingGlass size={40} />,
     },
@@ -38,6 +40,12 @@ const Actions = () => {
             {el.name}
           </Link>
         ))}
+        {auth.user.role === "assistant" && (
+          <Link to={"showbookings"}>
+            Show Bookings
+            <FaEdit siz={40} />
+          </Link>
+        )}
       </div>
     </>
   );

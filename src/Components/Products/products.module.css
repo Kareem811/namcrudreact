@@ -47,9 +47,11 @@
 .container .products .product p {
   font-size: 14px;
 }
-.container .products .product a {
+.container .products .product a,
+.container .products .product button {
   padding: 8px 40px;
   background-color: #223635;
+  cursor: pointer;
   color: #fff;
   border: none;
   border-radius: 5px;
@@ -154,4 +156,10 @@
 
 .search .iconLeft input:focus {
   border-color: #1f3835;
+}
+.products .product .actions {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
 }

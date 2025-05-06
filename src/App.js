@@ -18,6 +18,7 @@ import ForgetPassword from "./Components/Log/ForgetPassword";
 import Profile from "./Components/Profile/Profile";
 import Contact from "./Components/Contact/Contact";
 import Booking from "./Components/Booking/Booking";
+import ShowBookings from "./Components/AdminAssistant/ShowBookings";
 
 function App() {
   return (
@@ -137,6 +138,14 @@ function App() {
           element={
             <ProtectedRoute allowedRoles={["assistant"]}>
               <ShowMessages />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/assistant/dashboard/showbookings"
+          element={
+            <ProtectedRoute allowedRoles={["assistant"]}>
+              <ShowBookings />
             </ProtectedRoute>
           }
         />
