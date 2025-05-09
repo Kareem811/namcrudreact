@@ -125,15 +125,17 @@ import { AuthContext } from "../../Context/AuthContext";
 const Booking = () => {
   const { auth } = useContext(AuthContext);
   const { user } = auth;
+  console.log(user);
   const [formData, setFormData] = useState({
-    username: user.username !== "" ? user.username : "",
-    number: user.phone !== "" ? user.phone : "",
+    username: user?.username || "",
+    number: user?.phone || "",
     department: "",
     service: "",
     type: "online",
     date: "",
     time: "",
   });
+  
 
   const [done, setDone] = useState(false);
 
