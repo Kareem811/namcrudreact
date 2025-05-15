@@ -165,7 +165,7 @@ const Booking = () => {
     }
 
     axiosClient
-      .post("/booking", dataToSend)
+      .post("/bookings", dataToSend)
       .then((res) => {
         if (res.data.message === "Booking created successfully" || res.data === "Success") {
           setFormData({

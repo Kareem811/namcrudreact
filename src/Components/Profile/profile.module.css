@@ -1,40 +1,70 @@
 .profile {
-  width: 100%;
+  width: 95%;
+  margin: auto;
   margin-top: 120px;
   min-height: calc(100vh - 60px);
-  display: flex;
+  /* display: flex;
   justify-content: center;
   align-items: flex-start;
-  flex-wrap: wrap;
+  flex-wrap: wrap; */
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  grid-template-rows: repeat(1, 1fr);
 }
 .profile .left {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: flex-start;
+  align-items: center;
   gap: 20px;
-  width: 600px;
+  width: 100%;
+}
+.profile .left form {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 10px;
+  border-radius: 5px;
+}
+.profile .left form input {
+  padding: 10px;
+  width: 500px;
+}
+.profile .left button {
+  padding: 10px 50px;
+  cursor: pointer;
+  border-radius: 4px;
+  color: #fff;
+  background-color: darkgreen;
+  border: none;
 }
 .profile .right {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  width: 600px;
+  padding: 20px;
+  /* width: 600px; */
 }
-.profile .right table {
+.profile table {
   width: 100%;
   text-align: center;
   box-shadow: 0 0 20px 1px rgba(0, 0, 0, 0.1);
 }
-.profile .right table thead {
+.profile table thead {
   background-color: #2b2b2b;
   color: #fff;
 }
-.profile .right table tr th,
-.profile .right table tr td {
+.profile table tr th,
+.profile table tr td {
   padding: 20px;
 }
-.profile .right table tbody tr:nth-child(even) {
+.profile table tbody tr:nth-child(even) {
   background-color: lightgray;
+}
+.profile .middle {
+  /* width: 700px; */
+  padding: 20px;
 }
