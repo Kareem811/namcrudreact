@@ -6,8 +6,10 @@ import { FaEdit } from "react-icons/fa";
 
 import dashboardStyles from "./dashboard.module.css";
 import { AuthContext } from "../../Context/AuthContext";
+
 const Actions = () => {
   const { auth } = useContext(AuthContext);
+
   const [actions] = useState([
     {
       name: "Add Product",
@@ -30,20 +32,25 @@ const Actions = () => {
       icon: <FaMessage size={40} />,
     },
   ]);
+
   return (
     <>
       <h1>Dashboard</h1>
       <div className={dashboardStyles.actions}>
-        {actions.map((el, idx) => (
-          <Link to={el.path} className={dashboardStyles.action} key={idx}>
-            {el.icon}
-            {el.name}
-          </Link>
-        ))}
+        {actions
+          .filter(
+            (el) => !(auth.user.role === "assistant" && el.name === "Show Users")
+          )
+          .map((el, idx) => (
+            <Link to={el.path} className={dashboardStyles.action} key={idx}>
+              {el.icon}
+              {el.name}
+            </Link>
+          ))}
         {auth.user.role === "assistant" && (
-          <Link to={"showbookings"}>
+          <Link to={"showbookings"} className={dashboardStyles.action}>
+            <FaEdit size={40} />
             Show Bookings
-            <FaEdit siz={40} />
           </Link>
         )}
       </div>

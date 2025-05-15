@@ -210,7 +210,7 @@ const Profile = () => {
                         <th>Service</th>
                         <th>Status</th>
                         <th>Type</th>
-                        <th>Department</th>
+                        <th>Description</th>
                         <th>Date</th>
                       </tr>
                     </thead>
@@ -221,7 +221,7 @@ const Profile = () => {
                           <td>{el.service}</td>
                           <td>{el.status}</td>
                           <td>{el.type}</td>
-                          <td>{el.department}</td>
+                          <td>{el.description ? el.description : "No Description found"}</td>
                           <td>{el.date}</td>
                         </tr>
                       ))}
@@ -229,7 +229,6 @@ const Profile = () => {
                   </table>
                 </div>
               )}
-
               {user.messages && user.messages.length > 0 && (
                 <div className={profileStyles.right}>
                   <h1>Messages</h1>
@@ -239,6 +238,7 @@ const Profile = () => {
                         <th>Message Id</th>
                         <th>Message</th>
                         <th>User</th>
+                        <th>Reply</th> {/* ✅ أضف العنوان هنا */}
                       </tr>
                     </thead>
                     <tbody>
@@ -247,6 +247,7 @@ const Profile = () => {
                           <td>{el.id}</td>
                           <td>{el.message}</td>
                           <td>{el.name}</td>
+                          <td>{el.reply ? el.reply : "No reply yet"}</td> {/* ✅ عرض الرد */}
                         </tr>
                       ))}
                     </tbody>
