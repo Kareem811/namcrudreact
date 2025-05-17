@@ -5,6 +5,7 @@ import dashboardStyles from "./dashboard.module.css";
 import axiosClient from "../../axiosClient";
 import { MdProductionQuantityLimits } from "react-icons/md";
 import { IoIosCloseCircleOutline } from "react-icons/io";
+import { useNavigate } from "react-router-dom";
 
 const UpdateForm = ({ formProduct, closeForm }) => {
   const [product, setProduct] = useState({
@@ -65,7 +66,7 @@ const UpdateForm = ({ formProduct, closeForm }) => {
       setErr(true);
     }
   };
-
+const navigate = useNavigate()
   return (
     <>
       <Navbar />
@@ -82,9 +83,7 @@ const UpdateForm = ({ formProduct, closeForm }) => {
               <div className={logStyles.message}>
                 <h1>Updated Successfully</h1>
                 <button
-                  onClick={() =>
-                    (window.location.href = "/admin/dashboard/showproducts")
-                  }
+                  onClick={() => navigate(-1)}
                 >
                   Confirm
                 </button>

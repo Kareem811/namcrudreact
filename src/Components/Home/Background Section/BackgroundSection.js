@@ -10,7 +10,7 @@ const BackgroundSection = () => {
         <div className={bgStyles.backgroundData}>
           <h1>Welcome To Sollam</h1>
           <span>Lorem Ipsum is simply dummy text of the printing and typesetting industry. </span>
-          <Link to={""}>Get Started</Link>
+          <Link to={"/aiproduction"}>Get Started</Link>
         </div>
       </div>
     </section>

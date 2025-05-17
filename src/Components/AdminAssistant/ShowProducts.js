@@ -82,7 +82,7 @@ const ShowProducts = () => {
                   <td>{el.description}</td>
                   <td>
                     {el.images && typeof el.images === "string" ? (
-                      <img src={`http://127.0.0.1:8000/storage/app/public/products/${JSON.parse(el.images)[0]}`} alt="Product Thumbnail" width="50" height="50" />
+                      <img src={`http://127.0.0.1:8000/storage/${JSON.parse(el.images)[0]}`} alt="Product Thumbnail" width="50" height="50" />
                     ) : (
                       <span>No Image</span>
                     )}

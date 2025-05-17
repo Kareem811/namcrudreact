@@ -12,9 +12,11 @@ const SingleProduct = () => {
     axiosClient
       .get(`/products/${id}`)
       .then((res) => {
+        console.log(res.data);
         setLoading(false);
         setProduct(res.data);
-        setImages(JSON.parse(res.data.pimgs));
+        setImages(JSON.parse(res.data.images));
+        console.log(JSON.parse(res.data.images));
       })
       .catch((err) => console.log(err));
   }, [id]);
@@ -27,14 +29,14 @@ const SingleProduct = () => {
         <section className={dashboardStyles.container}>
           <h1>{product.pname}</h1>
           <div className={dashboardStyles.product}>
-            <img className={dashboardStyles.mainImg} src={images[0]} alt="" />
+            <img className={dashboardStyles.mainImg} src={`http://127.0.0.1:8000/storage/${images[0]}`} alt="" />
             <div className={dashboardStyles.productData}>
-              <h2>{product.pname}</h2>
+              <h2>{product.name}</h2>
               <h3>
-                <b>Category:</b> {product.pcategory}
+                <b>Category:</b> {product.category}
               </h3>
-              <p>{product.pdescription}</p>
-              <span>${product.pprice}</span>
+              <p>{product.description}</p>
+              <span>${product.price}</span>
             </div>
           </div>
           <div className={dashboardStyles.productImages}>

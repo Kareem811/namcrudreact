@@ -19,6 +19,7 @@ import Profile from "./Components/Profile/Profile";
 import Contact from "./Components/Contact/Contact";
 import Booking from "./Components/Booking/Booking";
 import ShowBookings from "./Components/AdminAssistant/ShowBookings";
+import AIProduction from "./Components/AI Production/AIProduction";
 
 function App() {
   return (
@@ -186,6 +187,14 @@ function App() {
           element={
             <ProtectedRoute allowedRoles={["user"]}>
               <AboutComponent />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/aiproduction"
+          element={
+            <ProtectedRoute allowedRoles={["user"]}>
+              <AIProduction />
             </ProtectedRoute>
           }
         />

@@ -14,15 +14,14 @@ const UserSingleProduct = () => {
     axiosClient(`/products/${id}`)
       .then((res) => {
         setProduct(res.data);
-        setImages(JSON.parse(product.images));
+        setImages(JSON.parse(res.data.images));
         setLoading(false);
       })
       .catch((err) => {
         console.log(err);
         setLoading(false);
       });
-    console.log(images);
-  }, [id, images]);
+  }, [id]);
   return (
     <>
       <Navbar />
@@ -43,11 +42,7 @@ const UserSingleProduct = () => {
             </div>
             <div className={productsStyles.images}>
               {images.map((el, idx) => (
-                <img
-                  key={idx}
-                  src={`http://127.0.0.1:8000/storage/${el}`}
-                  alt=""
-                />
+                <img key={idx} src={`http://127.0.0.1:8000/storage/${el}`} alt="" />
               ))}
             </div>
           </>
