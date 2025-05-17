@@ -479,7 +479,7 @@ const Navbar = () => {
                   <NavLink to="/booking">Book Now</NavLink>
                 </li>
               </>
-            ) : (
+            ) : auth.role === "admin" ? (
               <>
                 <li>
                   <NavLink to="/admin/dashboard">Dashboard</NavLink>
@@ -495,6 +495,24 @@ const Navbar = () => {
                 </li>
                 <li>
                   <NavLink to="/admin/dashboard/showmessages">Show Messages</NavLink>
+                </li>
+              </>
+            ) : (
+              <>
+                <li>
+                  <NavLink to="/assistant/dashboard">Dashboard</NavLink>
+                </li>
+                <li>
+                  <NavLink to="/assistant/dashboard/addproduct">Add Products</NavLink>
+                </li>
+                <li>
+                  <NavLink to="/assistant/dashboard/showproducts">Show Products</NavLink>
+                </li>
+                <li>
+                  <NavLink to="/assistant/dashboard/showbookings">Show Bookings</NavLink>
+                </li>
+                <li>
+                  <NavLink to="/assistant/dashboard/showmessages">Show Messages</NavLink>
                 </li>
               </>
             )
