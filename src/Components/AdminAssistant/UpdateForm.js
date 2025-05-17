@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import Navbar from "../Navbar/Navbar";
 import logStyles from "../Assets/form.module.css";
 import dashboardStyles from "./dashboard.module.css";
@@ -6,6 +6,7 @@ import axiosClient from "../../axiosClient";
 import { MdProductionQuantityLimits } from "react-icons/md";
 import { IoIosCloseCircleOutline } from "react-icons/io";
 import { useNavigate } from "react-router-dom";
+import { AuthContext } from "../../Context/AuthContext";
 
 const UpdateForm = ({ formProduct, closeForm }) => {
   const [product, setProduct] = useState({
@@ -15,6 +16,7 @@ const UpdateForm = ({ formProduct, closeForm }) => {
     description: "",
     images: [],
   });
+  const {auth} = useContext(AuthContext)
   const [err, setErr] = useState(false);
   const [done, setDone] = useState(false);
 
@@ -78,15 +80,10 @@ const navigate = useNavigate()
                 setDone(false);
                 closeForm();
               }}
-              className={logStyles.success}
-            >
+              className={logStyles.success}>
               <div className={logStyles.message}>
                 <h1>Updated Successfully</h1>
-                <button
-                  onClick={() => navigate(-1)}
-                >
-                  Confirm
-                </button>
+                <button onClick={() => (window.location.href = `/${auth.role}/dashboard/showproducts`)}>Confirm</button>
               </div>
             </div>
           )}
@@ -96,65 +93,27 @@ const navigate = useNavigate()
             </div>
             <div className={logStyles.data}>
               <form onSubmit={handleSubmit} encType="multipart/form-data">
-                <IoIosCloseCircleOutline
-                  size={30}
-                  cursor={"pointer"}
-                  color="#1f3835"
-                  onClick={closeForm}
-                />
+                <IoIosCloseCircleOutline size={30} cursor={"pointer"} color="#1f3835" onClick={closeForm} />
                 <h1>Update {formProduct.name}</h1>
                 <div className={logStyles.inputData}>
                   <label htmlFor="name">Product Name</label>
-                  <input
-                    type="text"
-                    id="name"
-                    value={product.name}
-                    onChange={(e) =>
-                      setProduct({ ...product, name: e.target.value })
-                    }
-                  />
+                  <input type="text" id="name" value={product.name} onChange={(e) => setProduct({ ...product, name: e.target.value })} />
                 </div>
                 <div className={logStyles.inputData}>
                   <label htmlFor="price">Product Price</label>
-                  <input
-                    type="text"
-                    id="price"
-                    value={product.price}
-                    onChange={(e) =>
-                      setProduct({ ...product, price: e.target.value })
-                    }
-                  />
+                  <input type="text" id="price" value={product.price} onChange={(e) => setProduct({ ...product, price: e.target.value })} />
                 </div>
                 <div className={logStyles.inputData}>
                   <label htmlFor="category">Product Category</label>
-                  <input
-                    type="text"
-                    id="category"
-                    value={product.category}
-                    onChange={(e) =>
-                      setProduct({ ...product, category: e.target.value })
-                    }
-                  />
+                  <input type="text" id="category" value={product.category} onChange={(e) => setProduct({ ...product, category: e.target.value })} />
                 </div>
                 <div className={logStyles.inputData}>
                   <label htmlFor="description">Product Description</label>
-                  <input
-                    type="text"
-                    id="description"
-                    value={product.description}
-                    onChange={(e) =>
-                      setProduct({ ...product, description: e.target.value })
-                    }
-                  />
+                  <input type="text" id="description" value={product.description} onChange={(e) => setProduct({ ...product, description: e.target.value })} />
                 </div>
                 <div className={logStyles.inputData}>
                   <label htmlFor="image">Product Images</label>
-                  <input
-                    type="file"
-                    id="image"
-                    multiple
-                    onChange={(e) => handleFileChange(e.target.files)}
-                  />
+                  <input type="file" id="image" multiple onChange={(e) => handleFileChange(e.target.files)} />
                 </div>
                 <button type="submit">Update</button>
               </form>

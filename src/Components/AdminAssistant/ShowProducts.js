@@ -1,12 +1,15 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Navbar from "../Navbar/Navbar";
 import tableStyles from "./table.module.css";
 import axiosClient from "../../axiosClient";
 import { Link, useNavigate } from "react-router-dom";
 import UpdateForm from "./UpdateForm";
+import { AuthContext } from "../../Context/AuthContext";
 const ShowProducts = () => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
+  const { auth } = useContext(AuthContext);
+  console.log(auth.role);
   useEffect(() => {
     axiosClient
       .get("/products")
@@ -22,6 +25,7 @@ const ShowProducts = () => {
   const [formProduct, setFormProducts] = useState(null);
   const [update, setUpdate] = useState(false);
   const [done, setDone] = useState(false);
+  const navigate = useNavigate();
   const getForm = (x) => {
     setUpdate(true);
     setFormProducts(x);
@@ -53,7 +57,7 @@ const ShowProducts = () => {
             className={tableStyles.success}>
             <div className={tableStyles.message}>
               <h1>Deleted Successfully</h1>
-              <button onClick={() => (window.location.href = "/admin/dashboard/showproducts")}>Confirm</button>
+              <button onClick={() => (window.location.href = `/${auth.role}/dashboard/showproducts`)}>Confirm</button>
             </div>
           </div>
         )}
